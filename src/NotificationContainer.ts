@@ -113,8 +113,10 @@ class NotificationContainer {
     // this.window.webContents.openDevTools();
     setInterval(() => {
       if (this.notifications.length) {
-        this.window.setAlwaysOnTop(true, 'screen-saver');
-        this.window.setVisibleOnAllWorkspaces(true);
+        try {
+          this.window.setAlwaysOnTop(true, 'screen-saver');
+          this.window.setVisibleOnAllWorkspaces(true);
+        } catch (e) {}
       }
     }, 100);
 
