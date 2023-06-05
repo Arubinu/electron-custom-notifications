@@ -2,7 +2,10 @@
 Display customized HTML/CSS notifications in a cross-platform way. Instead of relying on Windows, Mac or Linux APIs to show notifications, this uses an extra Electron window to display them, giving the developer the freedom to style the notifications as they choose to.
 
 ## Disclaimer
-The original author of this package is [kagbogre](https://github.com/kagbogre), and I (MarcusOy) have noticed that the npm package didn't exist. So this fork will be representative of what is inside the npm package. I will be adding some of my changes where I see fit. See the original repository [here](https://github.com/kagbogre/electron-custom-notifications).
+For this module to work properly in the foreground, it is advisable to disable hardware acceleration (which prevents clicking in transparent areas):
+```javascript
+app.disableHardwareAcceleration();
+```
 
 ## Installation
 To install simply: 
@@ -243,7 +246,7 @@ Our notification has the best font in the world.
 You can write up your own CSS animations in `setGlobalStyles()`, or you can use Animate.css library, which is already included and ready to use in this library.
 Example animated notification template:
 ```html
-<notification id="%id%" class="animated fadeInUp">
+<notification id="%id%" class="animated fade-in-up">
   <div id="logo"></div>
   <div id="content">
     <h1>Watch on Youtube</h1>

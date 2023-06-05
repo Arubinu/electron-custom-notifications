@@ -91,5 +91,5 @@ export {
   setDefaultTemplate,
   toLeft,
   toRight,
-  createNotification
+  createNotification,
 };

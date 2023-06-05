@@ -105,7 +105,7 @@ class NotificationContainer {
 
     this.window = new BrowserWindow(options);
     this.window.setMenu(null);
-    this.window.setIgnoreMouseEvents(true);
+    this.window.setIgnoreMouseEvents(false, { forward: true });
     this.window.setAlwaysOnTop(true, 'screen-saver');
     this.window.setVisibleOnAllWorkspaces(true);
     this.updateScreen();
@@ -133,7 +133,7 @@ class NotificationContainer {
     });
 
     ipcMain.on('make-unclickable', (e: any) => {
-      this.window.setIgnoreMouseEvents(true);
+      this.window.setIgnoreMouseEvents(false, { forward: true });
     });
 
     this.window.webContents.on('did-finish-load', () => {
@@ -201,9 +201,9 @@ class NotificationContainer {
    */
   public updateScreen(): void {
     const screens = NotificationContainer.getScreens(),
-      index = (this.screen >= screens.length) ? 0 : this.screen,
+      index = this.screen >= screens.length ? 0 : this.screen,
       bounds = screens[index].workArea,
-      x = bounds.x + (this.right ? (bounds.width - NotificationContainer.CONTAINER_WIDTH) : 0);
+      x = bounds.x + (this.right ? bounds.width - NotificationContainer.CONTAINER_WIDTH : 0);
 
     this.window.setPosition(x, bounds.y);
     this.window.setMinimumSize(NotificationContainer.CONTAINER_WIDTH, bounds.height); // fix
